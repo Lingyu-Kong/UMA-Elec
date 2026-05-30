@@ -152,6 +152,7 @@ def compute_forces(
     (grad,) = torch.autograd.grad(
         energy_part.sum(),
         pos,
+        retain_graph=True,
         create_graph=training,
     )
     forces = torch.neg(grad)
@@ -196,6 +197,7 @@ def compute_forces_and_stress(
     grads = torch.autograd.grad(
         [energy_part.sum()],
         [pos, cell],
+        retain_graph=True,
         create_graph=training,
     )
 
